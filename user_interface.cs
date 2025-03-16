@@ -19,21 +19,28 @@ namespace poe_project_part_one
             store_replies();
             store_ignore();
 
+            // Greet the user
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"Chatbot: Hello, {name}! Welcome to the Cybersecurity Chatbot.");
+            Console.WriteLine($"Chatbot: You can ask me anything about Cybersecurity!");
+
             //implenment a do while
             do
             {
-                // Greet the user
-                Console.WriteLine($"Hello, {name}! Welcome to the Cybersecurity Chatbot.");
-                Console.WriteLine("Ask me anything about Cybersecurity!");
 
                 //prompting the user for question
-                Console.WriteLine("Please enter your question: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"Chatbot: Please enter your question: ");
+                Console.ResetColor();
+                Console.Write($"{name}: ");
                 string question = Console.ReadLine();
 
                 // Exit condition if user types 'exit'
                 if (question.ToLower() == "exit")
                 {
-                    Console.WriteLine("Goodbye! Stay safe online.");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"Chatbot: Goodbye! Stay safe online.");
+                    Console.ResetColor();
                     break;
                 }
 
@@ -84,14 +91,18 @@ namespace poe_project_part_one
                 //if for display 
                 if (found)
                 {
-                    Console.WriteLine(message);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"Chatbot: {message}");
+                    Console.ResetColor();
                 }
                 else
                 {
-                    Console.WriteLine("Write something related to cyber security");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Chatbot: Write something related to cyber security.");
+                    Console.ResetColor();
                 }//end of display
 
-            }while(true);//end of do_while
+            } while(true);//end of do_while
 
         }//end of constructor
 

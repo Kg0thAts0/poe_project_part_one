@@ -12,7 +12,7 @@ namespace poe_project_part_one
         {
 
             //Voice greeting and logo
-            //new voice_greeting() { };
+            new voice_greeting() { };
             //new logo() { };
 
             //greeting message and prompt for the name 

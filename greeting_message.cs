@@ -13,19 +13,24 @@ namespace poe_project_part_one
 
             // Greet the user when the object is created
             DisplayGreeting();
-            ask_for_name();
+
         }//end of constructor
 
         private void DisplayGreeting()
         {
-            Console.WriteLine("Hello, welcome to the AI ChatBot assistant!");
+            Console.ForegroundColor = ConsoleColor.Cyan; 
+            Console.WriteLine($"Chatbot: Hello, welcome to the AI ChatBot assistant!");
+            Console.ResetColor();
         }
 
         // Ask for the user's name
         public void ask_for_name()
         {
             //prompting the user for their name
-            Console.WriteLine("Please, what is your name?");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"Chatbot: Please, what is your name?");
+            Console.ResetColor();
+            Console.Write($"User: ");
             name = Console.ReadLine();
         }//end of ask_for_name
 
