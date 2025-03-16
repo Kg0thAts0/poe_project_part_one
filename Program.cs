@@ -16,11 +16,10 @@ namespace poe_project_part_one
             //new logo() { };
 
             //greeting message and prompt for the name 
-
             greeting_message message = new greeting_message();
             message.ask_for_name();
 
-            //new user_interface(message.get_name()) { };
+            new user_interface(message.get_name()) { };
 
         }
     }

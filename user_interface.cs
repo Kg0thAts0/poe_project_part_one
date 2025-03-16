@@ -22,66 +22,76 @@ namespace poe_project_part_one
             //implenment a do while
             do
             {
+                // Greet the user
+                Console.WriteLine($"Hello, {name}! Welcome to the Cybersecurity Chatbot.");
+                Console.WriteLine("Ask me anything about Cybersecurity!");
 
-            //prompting the user for question
-            Console.WriteLine("Please enter your question: ");
-            string question = Console.ReadLine();
+                //prompting the user for question
+                Console.WriteLine("Please enter your question: ");
+                string question = Console.ReadLine();
 
-            //use split function
-            string[] store_word = question.Split(' ');
-
-            //temp arratlist
-            ArrayList filter = new ArrayList();
-
-            //for loop to display and add to temp array
-            for (int count = 0; count < store_word.Length; count++)
-            {
-
-                //check to final store
-                if (!ignores.Contains(store_word[count]))
+                // Exit condition if user types 'exit'
+                if (question.ToLower() == "exit")
                 {
-                    //store final
-                    filter.Add(store_word[count]);
+                    Console.WriteLine("Goodbye! Stay safe online.");
+                    break;
+                }
 
-                }//end of if statement
+                //use split function
+                string[] store_word = question.Split(' ');
 
-            }//end of for loop
+                //temp arratlist
+                ArrayList filter = new ArrayList();
 
-            //boolean for correct found answer
-            Boolean found = false;
-            string message = "";
-
-            //then display the answer
-            for (int counting = 0; counting < filter.Count; counting++)
-            {
-
-                //nested for loop
-                for (int counts = 0; counts < reply.Count; counts++)
+                //for loop to display and add to temp array
+                for (int count = 0; count < store_word.Length; count++)
                 {
 
-                    if (reply[counts].ToString().Contains(filter[counting].ToString()))
+                    //check to final store
+                    if (!ignores.Contains(store_word[count]))
+                    {
+                        //store final
+                        filter.Add(store_word[count]);
+
+                    }//end of if statement
+
+                }//end of for loop
+
+                //boolean for correct found answer
+                Boolean found = false;
+                string message = "";
+
+                //then display the answer
+                for (int counting = 0; counting < filter.Count; counting++)
+                {
+
+                    //nested for loop
+                    for (int counts = 0; counts < reply.Count; counts++)
                     {
 
-                        found = true;
-                        message += reply[counts] + "\n";
+                        if (reply[counts].ToString().Contains(filter[counting].ToString()))
+                        {
 
-                    }//end of if 
+                            found = true;
+                            message += reply[counts] + "\n";
 
-                }//end of reply for loop
+                        }//end of if 
 
-            }//end of get answer for loop
+                    }//end of reply for loop
 
-            //if for display 
-            if (found)
-            {
-                Console.WriteLine(message);
-            }
-            else
-            {
-                Console.WriteLine("Write something related to cyber security");
-            }//end of display
+                }//end of get answer for loop
 
-            }while(true);
+                //if for display 
+                if (found)
+                {
+                    Console.WriteLine(message);
+                }
+                else
+                {
+                    Console.WriteLine("Write something related to cyber security");
+                }//end of display
+
+            }while(true);//end of do_while
 
         }//end of constructor
 

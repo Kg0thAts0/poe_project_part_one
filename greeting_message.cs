@@ -14,8 +14,6 @@ namespace poe_project_part_one
             // Greet the user when the object is created
             DisplayGreeting();
             ask_for_name();
-            personal_greeting();
-
         }//end of constructor
 
         private void DisplayGreeting()
@@ -36,20 +34,6 @@ namespace poe_project_part_one
         {
             return name;
         }//end of get_name
-
-        // Method to greet the user personally
-        private void personal_greeting()
-        {
-            if (!string.IsNullOrEmpty(name))
-            {
-                Console.WriteLine($"Nice to meet you, {name}! How may I be of assistance to you today?");
-            }
-            else
-            {
-                Console.WriteLine("I didn't catch your name. Could you please tell me your name?");
-            }//end of if statement
-
-        }//end of personal_greeting method
 
 }//end of class
 }//end of file
