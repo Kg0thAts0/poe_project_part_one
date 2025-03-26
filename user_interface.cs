@@ -7,7 +7,6 @@ namespace poe_project_part_one
     public class user_interface
     {
         //global variable declaration and array
-
         private ArrayList reply = new ArrayList();
         private ArrayList ignores = new ArrayList();
 
@@ -22,6 +21,7 @@ namespace poe_project_part_one
             // Greet the user
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"Chatbot: Hello, {name}! Welcome to the Cybersecurity Chatbot.");
+            Console.WriteLine("=================================================================");
             Console.WriteLine($"Chatbot: You can ask me anything about Cybersecurity!");
 
             //implenment a do while
@@ -34,6 +34,7 @@ namespace poe_project_part_one
                 Console.ResetColor();
                 Console.Write($"{name}: ");
                 string question = Console.ReadLine();
+                Console.WriteLine("=================================================================");
 
                 // Exit condition if user types 'exit'
                 if (question.ToLower() == "exit")
@@ -42,7 +43,7 @@ namespace poe_project_part_one
                     Console.WriteLine($"Chatbot: Goodbye! Stay safe online.");
                     Console.ResetColor();
                     break;
-                }
+                }//end of if statement
 
                 //use split function
                 string[] store_word = question.Split(' ');
@@ -88,17 +89,20 @@ namespace poe_project_part_one
 
                 }//end of get answer for loop
 
-                //if for display 
+                //if statement for display 
                 if (found)
                 {
                     Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine($"Chatbot: {message}");
+                    Console.WriteLine($"Chatbot:\n {message}");
+                    Console.WriteLine("=================================================================");
                     Console.ResetColor();
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("=================================================================");
                     Console.WriteLine("Chatbot: Write something related to cyber security.");
+                    Console.WriteLine("=================================================================");
                     Console.ResetColor();
                 }//end of display
 
@@ -121,11 +125,11 @@ namespace poe_project_part_one
             reply.Add("common cyberattacks include phishing, ransomware, malware, man-in-the-middle (MitM), and denial-of-service (DoS) attacks.");
 
             //safe browsing
-            reply.Add("safe browsing helps protect you from malware, phishing attacks, and data theft by ensuring that you avoid harmful websites and unsafe practices.");
+            reply.Add("safe browsing helps protect you from malware, online attacks, and data theft by ensuring that you avoid harmful websites and unsafe practices.");
             reply.Add("A secure website will have \"https://\" at the beginning of its URL and often display a padlock icon in the address bar, which means it's safe to browse.");
 
             //phishing
-            reply.Add("ohh yes the most common scam is phishing");
+            reply.Add("phishing attempts can often be recognized by suspicious email addresses, urgent language, suspicious links, poor grammar, and requests for personal information.");
             reply.Add("phishing is when attackers trick you into revealing personal information by pretending to be legitimate entities.");
             reply.Add("phishing can be avoided by being cautious with unsolicited emails and links");
 
@@ -135,30 +139,35 @@ namespace poe_project_part_one
         private void store_ignore()
         {
             //then add values to ignore arraylist
-            ignores.Add("what");
-            ignores.Add("is");
-            ignores.Add("are");
-            ignores.Add("makes");
-            ignores.Add("tell");
-            ignores.Add("me");
-            ignores.Add("about");
-            ignores.Add("how");
-            ignores.Add("important");
-            ignores.Add("can");
-            ignores.Add("I");
-            ignores.Add("identify");
-            ignores.Add("avoid");
-            ignores.Add("it");
-            ignores.Add("why");
-            ignores.Add("common");
-            ignores.Add("the");
-            ignores.Add("types");
-            ignores.Add("of");
-            ignores.Add("strong");
-            ignores.Add("often");
-            ignores.Add("should");
-            ignores.Add("change");
-            ignores.Add("my");
+            ignores.Add("what"); ignores.Add("ohh");
+            ignores.Add("is"); ignores.Add("yes");
+            ignores.Add("are"); ignores.Add("most");
+            ignores.Add("makes"); ignores.Add("scam");
+            ignores.Add("tell"); ignores.Add("when");
+            ignores.Add("me"); ignores.Add("attempts");
+            ignores.Add("about"); ignores.Add("recognized");
+            ignores.Add("how"); ignores.Add("and");
+            ignores.Add("important"); ignores.Add("be");
+            ignores.Add("can"); ignores.Add("to");
+            ignores.Add("I"); ignores.Add("avoided");
+            ignores.Add("identify"); ignores.Add("practice");
+            ignores.Add("avoid"); ignores.Add("include");
+            ignores.Add("it"); ignores.Add("attacks");
+            ignores.Add("why"); ignores.Add("attack");
+            ignores.Add("common"); ignores.Add("trick");
+            ignores.Add("the"); ignores.Add("into");
+            ignores.Add("types"); ignores.Add("which");
+            ignores.Add("of"); ignores.Add("https");
+            ignores.Add("strong"); ignores.Add("URL");
+            ignores.Add("often"); ignores.Add("in");
+            ignores.Add("should"); ignores.Add("hacked");
+            ignores.Add("change"); ignores.Add("a");
+            ignores.Add("my"); ignores.Add("at");
+            ignores.Add("you"); ignores.Add("from");
+            ignores.Add("your"); ignores.Add("hi");
+            ignores.Add("malware"); ignores.Add("hello");
+            ignores.Add("ransomware"); ignores.Add("security");
+            ignores.Add("being");
 
         }//end of store_ignore
 

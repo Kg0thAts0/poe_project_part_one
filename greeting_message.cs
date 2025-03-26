@@ -12,16 +12,19 @@ namespace poe_project_part_one
         {
 
             // Greet the user when the object is created
-            DisplayGreeting();
+            display_greeting();
 
         }//end of constructor
 
-        private void DisplayGreeting()
+        private void display_greeting()
         {
-            Console.ForegroundColor = ConsoleColor.Cyan; 
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("======================================================================");
             Console.WriteLine($"Chatbot: Hello, welcome to the AI ChatBot assistant!");
+            Console.WriteLine("======================================================================");
             Console.ResetColor();
-        }
+
+        }//end of display_greeting method
 
         // Ask for the user's name
         public void ask_for_name()
@@ -32,12 +35,16 @@ namespace poe_project_part_one
             Console.ResetColor();
             Console.Write($"User: ");
             name = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("======================================================================");
+
         }//end of ask_for_name
 
         // Get the user's name
         public string get_name()
         {
             return name;
+
         }//end of get_name
 
 }//end of class

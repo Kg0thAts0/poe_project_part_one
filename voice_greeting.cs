@@ -1,8 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Media;
-using NAudio;
-using NAudio.Wave;
 
 namespace poe_project_part_one
 {
@@ -13,60 +11,39 @@ namespace poe_project_part_one
         {
             // Get path
             string paths = AppDomain.CurrentDomain.BaseDirectory;
+
+            //replacing the bin\\Debug\\
             string new_path = paths.Replace("bin\\Debug\\", "");
 
-            // Get the full path for input (MP3) and output (WAV)
-            string old_path = Path.Combine(new_path, "voice_greeting.mp3");
-            string find_wav = Path.Combine(new_path, "voice_greeting.wav");
-
-            // Convert the MP3 to WAV
-            conversion(old_path, find_wav);
+            // Combine the path
+            string full_path = Path.Combine(new_path, "greetings.wav");
 
             // Play the sound
             try
             {
-                using (SoundPlayer play = new SoundPlayer(find_wav))
+                // Check if the file exists before attempting to play it
+                if (File.Exists(full_path))
                 {
-                    play.PlaySync();  // Play synchronously
-                    play.Stop();      // Stop playing (though it's redundant since PlaySync waits)
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
 
-        }//end of constructor
-
-        // Convert MP3 to WAV
-        private void conversion(string mp3FilePath, string wavFilePath)
-        {
-            try
-            {
-                if (File.Exists(mp3FilePath))
-                {
-                    // Create an Mp3FileReader to read the MP3 file
-                    using (Mp3FileReader reader = new Mp3FileReader(mp3FilePath))
+                    //making use of using function
+                    using (SoundPlayer play = new SoundPlayer(full_path))
                     {
-                        // Create a WaveFileWriter to write the WAV file
-                        using (WaveFileWriter writer = new WaveFileWriter(wavFilePath, reader.WaveFormat))
-                        {
-                            // Copy data from MP3 to WAV
-                            reader.CopyTo(writer);
-                        }
-                    }
-                    Console.WriteLine("Conversion to WAV completed successfully.");
+                        play.PlaySync();
+                    }//end of using function
                 }
                 else
                 {
-                    Console.WriteLine("MP3 file does not exist.");
+                    Console.WriteLine("Greeting file not found at: " + full_path);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error during conversion: " + ex.Message);
-            }
-        }//end of conversion
+
+                Console.WriteLine(ex.Message);
+
+            }//end of try_catch
+
+        }//end of constructor
 
     }//end of class
 }//end of file
