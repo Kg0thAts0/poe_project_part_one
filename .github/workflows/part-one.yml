@@ -1,0 +1,31 @@
+name: .NET Core Desktop
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+    runs-on: windows-latest  # For a list of available runner types, refer to
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+  # Add Build 
+   - name: Build with MSBuild
+       run: msbuild poe_project_part_one.sln/p:Configuration=Release
+
+   - name: Upload build artifacts
+       run: actions/upload-artifact@v4
+         with:
+         name: Build Output
+         path:|
+           **\bin\Release\
