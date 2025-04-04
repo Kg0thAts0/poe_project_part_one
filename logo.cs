@@ -26,7 +26,7 @@ namespace poe_project_part_one
                 using (Bitmap img = new Bitmap(image_path))
                 {
                     // Resize the image to fit a smaller dimension
-                    Bitmap resize_image = new Bitmap(img, new Size(160, 60));
+                    Bitmap resize_image = new Bitmap(img, new Size(180, 80));
 
                     // Store the ASCII art as a string
                     string asciiArt = string.Empty;
@@ -71,10 +71,10 @@ namespace poe_project_part_one
         {
             // Returning different ASCII characters based on the grayscale value
             if (gray > 230) return " ";
-            if (gray > 200) return ".";
+            if (gray > 200) return "*";
             if (gray > 170) return "\"";
             if (gray > 140) return "+";
-            if (gray > 110) return "*";
+            if (gray > 110) return ".";
             if (gray > 80) return "#";
             if (gray > 50) return "%";
             if (gray > 20) return "&";

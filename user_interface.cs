@@ -7,7 +7,7 @@ namespace poe_project_part_one
     public class user_interface
     {
         //global variable declaration and array
-        private ArrayList reply = new ArrayList();
+        private ArrayList answers = new ArrayList();
         private ArrayList ignores = new ArrayList();
 
         //constructor
@@ -74,14 +74,14 @@ namespace poe_project_part_one
                 {
 
                     //nested for loop
-                    for (int counts = 0; counts < reply.Count; counts++)
+                    for (int counts = 0; counts < answers.Count; counts++)
                     {
 
-                        if (reply[counts].ToString().Contains(filter[counting].ToString()))
+                        if (answers[counts].ToString().Contains(filter[counting].ToString()))
                         {
 
                             found = true;
-                            message += reply[counts] + "\n";
+                            message += answers[counts] + "\n";
 
                         }//end of if 
 
@@ -115,23 +115,23 @@ namespace poe_project_part_one
         {
             //add values to arraylist
             //passwords
-            reply.Add("Strong passwords help protect your accounts and personal data from unauthorized access and reduce the risk of being hacked.");
-            reply.Add("A strong password typically contains a mix of uppercase and lowercase letters, numbers, and special characters, and is at least 12 characters long.\r\n");
-            reply.Add("Change passwords periodically for sensitive accounts, but avoid frequent changes that weaken security.");
+            answers.Add("Strong passwords help protect your accounts and personal data from unauthorized access and reduce the risk of being hacked.");
+            answers.Add("A strong password typically contains a mix of uppercase and lowercase letters, numbers, and special characters, and is at least 12 characters long.\r\n");
+            answers.Add("Change passwords periodically for sensitive accounts, but avoid frequent changes that weaken security.");
 
             //cybersecurity
-            reply.Add("cybersecurity is the practice of protecting systems, networks, and data from digital attacks, unauthorized access, and damage.");
-            reply.Add("cybersecurity prevents data breaches, fraud, and cyberattacks that can lead to financial and reputational damage.");
-            reply.Add("common cyberattacks include phishing, ransomware, malware, man-in-the-middle (MitM), and denial-of-service (DoS) attacks.");
+            answers.Add("cybersecurity is the practice of protecting systems, networks, and data from digital attacks, unauthorized access, and damage.");
+            answers.Add("cybersecurity prevents data breaches, fraud, and cyberattacks that can lead to financial and reputational damage.");
+            answers.Add("common cyberattacks include ransomware, malware, man-in-the-middle (MitM), and denial-of-service (DoS) attacks.");
 
             //safe browsing
-            reply.Add("safe browsing helps protect you from malware, online attacks, and data theft by ensuring that you avoid harmful websites and unsafe practices.");
-            reply.Add("A secure website will have \"https://\" at the beginning of its URL and often display a padlock icon in the address bar, which means it's safe to browse.");
+            answers.Add("safe browsing helps protect you from malware, online attacks, and data theft by ensuring that you avoid harmful websites and unsafe practices.");
+            answers.Add("A secure website will have \"https://\" at the beginning of its URL and often display a padlock icon in the address bar, which means it's safe to browse.");
 
             //phishing
-            reply.Add("phishing attempts can often be recognized by suspicious email addresses, urgent language, suspicious links, poor grammar, and requests for personal information.");
-            reply.Add("phishing is when attackers trick you into revealing personal information by pretending to be legitimate entities.");
-            reply.Add("phishing can be avoided by being cautious with unsolicited emails and links");
+            answers.Add("phishing attempts can often be recognized by suspicious email addresses, urgent language, suspicious links, poor grammar, and requests for personal information.");
+            answers.Add("phishing is when attackers trick you into revealing personal information by pretending to be legitimate entities.");
+            answers.Add("phishing can be avoided by being cautious with unsolicited emails and links");
 
         }//end of store_replies
 
@@ -167,7 +167,7 @@ namespace poe_project_part_one
             ignores.Add("your"); ignores.Add("hi");
             ignores.Add("malware"); ignores.Add("hello");
             ignores.Add("ransomware"); ignores.Add("security");
-            ignores.Add("being");
+            ignores.Add("being"); ignores.Add("URL");
 
         }//end of store_ignore
 

@@ -9,13 +9,13 @@ namespace poe_project_part_one
         //constructor
         public voice_greeting()
         {
-            // Get path
+            // Get the path
             string paths = AppDomain.CurrentDomain.BaseDirectory;
 
             //replacing the bin\\Debug\\
             string new_path = paths.Replace("bin\\Debug\\", "");
 
-            // Combine the path
+            // Combine the path with the wav file
             string full_path = Path.Combine(new_path, "greetings.wav");
 
             // Play the sound

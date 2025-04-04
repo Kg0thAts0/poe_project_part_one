@@ -10,7 +10,6 @@ namespace poe_project_part_one
         //constructor
         public greeting_message()
         {
-
             // Greet the user when the object is created
             display_greeting();
 
@@ -44,7 +43,6 @@ namespace poe_project_part_one
         public string get_name()
         {
             return name;
-
         }//end of get_name
 
 }//end of class
