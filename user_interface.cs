@@ -12,6 +12,7 @@ namespace poe_project_part_one
         private List<string> answers = new List<string>();
         private List<string> ignores = new List<string>();
         private List<string> memory_store = new List<string>();
+        private Random random = new Random();  
 
         private string memoryPath;
 
@@ -19,9 +20,9 @@ namespace poe_project_part_one
         public user_interface(string name)
         {
             // Setup file path for memory recall
-            string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string projectPath = basePath.Replace("bin\\Debug\\", "");
-            memoryPath = Path.Combine(projectPath, "memory.txt");
+            string full_path = AppDomain.CurrentDomain.BaseDirectory;
+            string new_path = full_path.Replace("bin\\Debug\\", "");
+            memoryPath = Path.Combine(new_path, "memory.txt");
 
             // Load previous memory
             memory_store = memory_load(memoryPath);
@@ -84,27 +85,52 @@ namespace poe_project_part_one
 
                 //boolean for correct found answer
                 Boolean found = false;
-                string message = "";
 
-                //then display the answer
+                // Create a list to store all matching answers
+                List<string> matchedAnswers = new List<string>();
+
+                // Loop through filtered keywords
                 for (int counting = 0; counting < filter.Count; counting++)
                 {
-
-                    //nested for loop
+                    // Check each answer against the current keyword
                     for (int counts = 0; counts < answers.Count; counts++)
                     {
-
-                        if (answers[counts].ToString().Contains(filter[counting].ToString()))
+                        // If the answer contains the keyword (case-insensitive)
+                        if (answers[counts].ToLower().Contains(filter[counting].ToLower()))
                         {
-
+                            // Add to matchedAnswers only if not already added
+                            if (!matchedAnswers.Contains(answers[counts]))
+                            {
+                                matchedAnswers.Add(answers[counts]);
+                            }
+                            // Set found to true since at least one match exists
                             found = true;
-                            message += answers[counts] + "\n";
+                        }
+                    }
+                }
 
-                        }//end of if 
+                // String to hold the message to be displayed
+                string message = "";
 
-                    }//end of reply for loop
+                // If matches were found
+                if (found)
+                {
+                    // Determine how many responses to show (max 2)
+                    int numberToPick = Math.Min(2, matchedAnswers.Count);
 
-                }//end of get answer for loop
+                    // Randomly pick and remove entries to avoid duplicates
+                    for (int i = 0; i < numberToPick; i++)
+                    {
+                        // Pick a random index
+                        int index = random.Next(matchedAnswers.Count);
+
+                        // Append the randomly picked answer to the message with bullet point formatting
+                        message += "- " + matchedAnswers[index] + "\n";
+
+                        // Remove the picked answer to prevent duplicates
+                        matchedAnswers.RemoveAt(index);
+                    }
+                }
 
                 //if statement for display 
                 if (found)
