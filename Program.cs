@@ -12,8 +12,8 @@ namespace poe_project_part_one
         {
 
             //Voice greeting and logo instances
-            new voice_greeting() { };
-            new logo() { };
+            //new voice_greeting() { };
+            //new logo() { };
 
             //greeting_message instance and prompt for the user's name 
             greeting_message message = new greeting_message();

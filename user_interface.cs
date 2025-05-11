@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 
 namespace poe_project_part_one
@@ -7,12 +8,24 @@ namespace poe_project_part_one
     public class user_interface
     {
         //global variable declaration and array
-        private ArrayList answers = new ArrayList();
-        private ArrayList ignores = new ArrayList();
+        // Replaced ArrayList with List<string> for better performance and type safety
+        private List<string> answers = new List<string>();
+        private List<string> ignores = new List<string>();
+        private List<string> memory_store = new List<string>();
+
+        private string memoryPath;
 
         //constructor
         public user_interface(string name)
         {
+            // Setup file path for memory recall
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string projectPath = basePath.Replace("bin\\Debug\\", "");
+            memoryPath = Path.Combine(projectPath, "memory.txt");
+
+            // Load previous memory
+            memory_store = memory_load(memoryPath);
+
 
             //calling both methods store_replies and store_ignore
             store_replies();
@@ -45,11 +58,15 @@ namespace poe_project_part_one
                     break;
                 }//end of if statement
 
+                // Save question to memory
+                memory_store.Add($"{name}, {question}");
+                File.WriteAllLines(memoryPath, memory_store);
+
                 //use split function
                 string[] store_word = question.Split(' ');
 
                 //temp arratlist
-                ArrayList filter = new ArrayList();
+                List<string> filter = new List<string>();
 
                 //for loop to display and add to temp array
                 for (int count = 0; count < store_word.Length; count++)
@@ -109,6 +126,29 @@ namespace poe_project_part_one
             } while(true);//end of do_while
 
         }//end of constructor
+
+        //create method to return all memory recall
+        private List<string> memory_load(string path)
+        {
+
+            //checking if the txt file exists
+            if (File.Exists(path))
+            {
+
+                //return all the history
+                return new List<string>(File.ReadAllLines(path));
+
+            }
+            else
+            {
+
+                //create the file
+                File.CreateText(path);
+                return new List<string>();
+
+            }//end of if statement
+
+        }//end of method memory_load
 
         //Create method for storing all replies
         private void store_replies()
