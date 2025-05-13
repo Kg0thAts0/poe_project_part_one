@@ -19,7 +19,13 @@ namespace poe_project_part_one
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("======================================================================");
-            Console.WriteLine($"Chatbot: Hello, welcome to the AI ChatBot assistant!");
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write("Chatbot: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Hello, welcome to the AI ChatBot assistant!");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("======================================================================");
             Console.ResetColor();
 
@@ -29,13 +35,21 @@ namespace poe_project_part_one
         public void ask_for_name()
         {
             //prompting the user for their name
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write("Chatbot: ");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"Chatbot: Please, what is your name?");
+            Console.WriteLine("Please, what is your name?");
             Console.ResetColor();
-            Console.Write($"User: ");
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write("User: ");
+            Console.ResetColor();
+
             name = Console.ReadLine();
+
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("======================================================================");
+            Console.ResetColor();
 
         }//end of ask_for_name
 
