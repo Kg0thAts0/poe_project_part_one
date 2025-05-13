@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace poe_project_part_one
 {
@@ -15,6 +16,9 @@ namespace poe_project_part_one
         private Random random = new Random();  
 
         private string memoryPath;
+
+        // Define delegate for matching answers
+        private delegate bool MatchDelegate(string input, string keyword);
 
         //constructor
         public user_interface(string name)
@@ -63,50 +67,34 @@ namespace poe_project_part_one
                 memory_store.Add($"{name}, {question}");
                 File.WriteAllLines(memoryPath, memory_store);
 
-                //use split function
+                // Split the input into individual words
                 string[] store_word = question.Split(' ');
 
-                //temp arratlist
-                List<string> filter = new List<string>();
+                // Filter out common or unimportant words using a lambda expression
+                List<string> filter = store_word.Where(word => !ignores.Contains(word)).ToList();
 
-                //for loop to display and add to temp array
-                for (int count = 0; count < store_word.Length; count++)
-                {
+                // Boolean to check if any answers were matched
+                bool found = false;
 
-                    //check to final store
-                    if (!ignores.Contains(store_word[count]))
-                    {
-                        //store final
-                        filter.Add(store_word[count]);
-
-                    }//end of if statement
-
-                }//end of for loop
-
-                //boolean for correct found answer
-                Boolean found = false;
-
-                // Create a list to store all matching answers
+                // Store all matching answers
                 List<string> matchedAnswers = new List<string>();
 
-                // Loop through filtered keywords
-                for (int counting = 0; counting < filter.Count; counting++)
+                // Use a delegate with a lambda expression to define the matching logic
+                MatchDelegate matcher = (input, keyword) => input.ToLower().Contains(keyword.ToLower());
+
+                // Iterate through each filtered keyword
+                foreach (string keyword in filter)
                 {
-                    // Check each answer against the current keyword
-                    for (int counts = 0; counts < answers.Count; counts++)
+                    // For each keyword, apply the matcher delegate to all answers
+                    answers.ForEach(answer =>
                     {
-                        // If the answer contains the keyword (case-insensitive)
-                        if (answers[counts].ToLower().Contains(filter[counting].ToLower()))
+                        // If a match is found and not already added, store it
+                        if (matcher(answer, keyword) && !matchedAnswers.Contains(answer))
                         {
-                            // Add to matchedAnswers only if not already added
-                            if (!matchedAnswers.Contains(answers[counts]))
-                            {
-                                matchedAnswers.Add(answers[counts]);
-                            }
-                            // Set found to true since at least one match exists
+                            matchedAnswers.Add(answer);
                             found = true;
                         }
-                    }
+                    });
                 }
 
                 // String to hold the message to be displayed

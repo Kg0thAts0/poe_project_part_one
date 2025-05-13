@@ -13,3 +13,9 @@ king, phishing
 king, passwords
 king, phishing
 king, phishing
+kgothatso, passwords
+kgothatso, passwords
+kgothatso, 
+kgothatso, password
+tlogi, phishing
+tlogi, phishing
